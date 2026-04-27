@@ -156,12 +156,13 @@ public abstract class Dessin {
             return true;
         }
 
-        // Vérification du type du paramètre
-        if (obj instanceof Dessin) {
-            // Vérification des valeurs des attributs
+    // Vérification du type du paramètre
+    if (obj instanceof Dessin) {
+        // Vérification des valeurs des attributs
 	    Dessin other = (Dessin) obj;
 	    return couleur.equals(other.couleur);
 	}
-	return false;
+	
+    return false;
     }
 }
