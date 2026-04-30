@@ -65,7 +65,7 @@ public class Animation extends Texture {
      * @see <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html" target="_blank">RuntimeException</a>
      */
     public Animation(){
-	throw new java.lang.RuntimeException("Le constructeur par défaut d'animation ne peut être appelé. Il faut au moins spécifier une image.");
+	    throw new java.lang.RuntimeException("Le constructeur par défaut d'animation ne peut être appelé. Il faut au moins spécifier une image.");
     }
 
     /**
@@ -73,14 +73,14 @@ public class Animation extends Texture {
      * @param a L'animation à copier.
      */
     public Animation ( Animation a ){
-	super(a);
-	nbTourAnimation=a.nbTourAnimation;
-	racineCheminImage=new String(a.racineCheminImage);
-	numeroPremiereImage=new String(a.numeroPremiereImage);
-	numeroDerniereImage=new String(a.numeroDerniereImage);
-	extensionImage=new String(a.extensionImage);
-	numeroImageCourante=new String(a.numeroImageCourante);
-	lecture=true;
+        super(a);
+        nbTourAnimation=a.nbTourAnimation;
+        racineCheminImage=new String(a.racineCheminImage);
+        numeroPremiereImage=new String(a.numeroPremiereImage);
+        numeroDerniereImage=new String(a.numeroDerniereImage);
+        extensionImage=new String(a.extensionImage);
+        numeroImageCourante=new String(a.numeroImageCourante);
+        lecture=true;
 
     }
 
@@ -99,15 +99,15 @@ public class Animation extends Texture {
      * @see Point
      */
     public Animation ( String racineCheminImage, String numeroPremiereImage, String numeroDerniereImage, String extensionImage, Point a ) {
-	super ( racineCheminImage+numeroPremiereImage+"."+extensionImage, a);
+        super ( racineCheminImage+numeroPremiereImage+"."+extensionImage, a);
 
-	nbTourAnimation=0;
-	this.racineCheminImage=new String(racineCheminImage);
-	this.numeroPremiereImage=new String(numeroPremiereImage);
-	this.numeroDerniereImage=new String(numeroDerniereImage);
-	this.extensionImage=new String(extensionImage);
-	numeroImageCourante=new String(numeroPremiereImage);
-	lecture=true;
+        nbTourAnimation=0;
+        this.racineCheminImage=new String(racineCheminImage);
+        this.numeroPremiereImage=new String(numeroPremiereImage);
+        this.numeroDerniereImage=new String(numeroDerniereImage);
+        this.extensionImage=new String(extensionImage);
+        numeroImageCourante=new String(numeroPremiereImage);
+        lecture=true;
 
     }
 
@@ -124,15 +124,15 @@ public class Animation extends Texture {
      * @see Point
      */
     public Animation ( String racineCheminImage, String numeroPremiereImage, String numeroDerniereImage, String extensionImage, Point a, int larg, int haut ) {
-	super ( racineCheminImage+numeroPremiereImage+"."+extensionImage, a, larg, haut);
+        super ( racineCheminImage+numeroPremiereImage+"."+extensionImage, a, larg, haut);
 
-	nbTourAnimation=0;
-	this.racineCheminImage=new String(racineCheminImage);
-	this.numeroPremiereImage=new String(numeroPremiereImage);
-	this.numeroDerniereImage=new String(numeroDerniereImage);
-	this.extensionImage=new String(extensionImage);
-	numeroImageCourante=new String(numeroPremiereImage);
-	lecture=true;
+        nbTourAnimation=0;
+        this.racineCheminImage=new String(racineCheminImage);
+        this.numeroPremiereImage=new String(numeroPremiereImage);
+        this.numeroDerniereImage=new String(numeroDerniereImage);
+        this.extensionImage=new String(extensionImage);
+        numeroImageCourante=new String(numeroPremiereImage);
+        lecture=true;
     }
 
     // Avec couleur de fond //
@@ -152,15 +152,15 @@ public class Animation extends Texture {
      * @see Point
      */
     public Animation ( Couleur couleur, String racineCheminImage, String numeroPremiereImage, String numeroDerniereImage, String extensionImage, Point a ) {
-	super ( couleur, racineCheminImage+numeroPremiereImage+"."+extensionImage, a);
+        super ( couleur, racineCheminImage+numeroPremiereImage+"."+extensionImage, a);
 
-	nbTourAnimation=0;
-	this.racineCheminImage=new String(racineCheminImage);
-	this.numeroPremiereImage=new String(numeroPremiereImage);
-	this.numeroDerniereImage=new String(numeroDerniereImage);
-	this.extensionImage=new String(extensionImage);
-	numeroImageCourante=new String(numeroPremiereImage);
-	lecture=true;
+        nbTourAnimation=0;
+        this.racineCheminImage=new String(racineCheminImage);
+        this.numeroPremiereImage=new String(numeroPremiereImage);
+        this.numeroDerniereImage=new String(numeroDerniereImage);
+        this.extensionImage=new String(extensionImage);
+        numeroImageCourante=new String(numeroPremiereImage);
+        lecture=true;
     }
 
     /**
@@ -178,15 +178,15 @@ public class Animation extends Texture {
      * @see Point
      */
     public Animation ( Couleur couleur, String racineCheminImage, String numeroPremiereImage, String numeroDerniereImage, String extensionImage, Point a, int larg, int haut ) {
-	super (couleur, racineCheminImage+numeroPremiereImage+"."+extensionImage, a, larg, haut);
+        super (couleur, racineCheminImage+numeroPremiereImage+"."+extensionImage, a, larg, haut);
 
-	nbTourAnimation=0;
-	this.racineCheminImage=new String(racineCheminImage);
-	this.numeroPremiereImage=new String(numeroPremiereImage);
-	this.numeroDerniereImage=new String(numeroDerniereImage);
-	this.extensionImage=new String(extensionImage);
-	numeroImageCourante=new String(numeroPremiereImage);
-	lecture=true;
+        nbTourAnimation=0;
+        this.racineCheminImage=new String(racineCheminImage);
+        this.numeroPremiereImage=new String(numeroPremiereImage);
+        this.numeroDerniereImage=new String(numeroDerniereImage);
+        this.extensionImage=new String(extensionImage);
+        numeroImageCourante=new String(numeroPremiereImage);
+        lecture=true;
     }
 
     // getter
@@ -195,7 +195,7 @@ public class Animation extends Texture {
      * @return le nombre de fois que l'animation a été jouée.
      */
     public int getNbTourAnimation(){
-	return nbTourAnimation;
+	    return nbTourAnimation;
     }
 
     /**
@@ -203,7 +203,7 @@ public class Animation extends Texture {
      * @return vrai si l'animation est en cours de lecture, faux sinon.
      */
     public boolean getLecture(){
-	return lecture;
+	    return lecture;
     }
 
     /**
@@ -211,7 +211,7 @@ public class Animation extends Texture {
      * @return le numéro de l'image courante sous forme de chaîne de caractères.
      */
     public String getNumeroImageCourante(){
-	return numeroImageCourante;
+	    return numeroImageCourante;
     }
 
     /**
@@ -219,7 +219,7 @@ public class Animation extends Texture {
      * @return vrai si l'image affichée est la première de la série, faux sinon.
      */
     public boolean surPremiereImage(){
-	return numeroImageCourante.equals(numeroPremiereImage);
+	    return numeroImageCourante.equals(numeroPremiereImage);
     }
 
     /**
@@ -227,37 +227,37 @@ public class Animation extends Texture {
      * @return vrai si l'image affichée est la dernière de la série, faux sinon.
      */
     public boolean surDerniereImage(){
-	return numeroImageCourante.equals(numeroDerniereImage);
+	    return numeroImageCourante.equals(numeroDerniereImage);
     }
 
     /**
      * Fixe l'image courante à la première image de la série. Permet donc de relancer l'animation depuis le début.
      */
     public void affichePremiereImage(){
-	numeroImageCourante=new String(numeroPremiereImage);
+	    numeroImageCourante=new String(numeroPremiereImage);
     }
 
     /**
      * Fixe l'image courante à la dernière image de la série.
      */
     public void afficheDerniereImage(){
-	numeroImageCourante=new String(numeroDerniereImage);
+	    numeroImageCourante=new String(numeroDerniereImage);
     }
 
 
     private void imageSuivante(){
-	int numCourant=Integer.parseInt(numeroImageCourante);
-	int derImg=Integer.parseInt(numeroDerniereImage);
-	numCourant++;
-	if(numCourant>derImg){
-	    numCourant=Integer.parseInt(numeroPremiereImage);
-	    nbTourAnimation++;
-	}
-	numeroImageCourante=""+numCourant;
-	if(numeroPremiereImage.length()==numeroDerniereImage.length()){
-	    while(numeroPremiereImage.length()>numeroImageCourante.length())
-		numeroImageCourante="0"+numeroImageCourante;
-	}
+        int numCourant=Integer.parseInt(numeroImageCourante);
+        int derImg=Integer.parseInt(numeroDerniereImage);
+        numCourant++;
+        if(numCourant>derImg){
+            numCourant=Integer.parseInt(numeroPremiereImage);
+            nbTourAnimation++;
+        }
+        numeroImageCourante=""+numCourant;
+        if(numeroPremiereImage.length()==numeroDerniereImage.length()){
+            while(numeroPremiereImage.length()>numeroImageCourante.length())
+            numeroImageCourante="0"+numeroImageCourante;
+        }
     }
 
     // setter
@@ -266,21 +266,21 @@ public class Animation extends Texture {
      * @param b passer true si on veut (re)lancer l'animation, false si on veut la mettre en pause.
      */
     public void setLecture(boolean b){
-	lecture=b;
+	    lecture=b;
     }
 
     /**
      * Permet de (re)lancer l'animation.
      */
     public void lecture(){
-	lecture=true;
+	    lecture=true;
     }
 
     /**
      * Permet de stopper l'animation.
      */
     public void stop(){
-	lecture=false;
+	    lecture=false;
     }
 
     /**
@@ -288,13 +288,13 @@ public class Animation extends Texture {
      * @param str une chaine de caractères spécifiant le numéro de l'image à afficher.
      */
     public void setNumeroImage(String str){
-	/*TODO - Vérifier que le numéro appartient bien à l'ensemble d'images*/
-	numeroImageCourante=new String(str);
-	int largeur=getLargeur();
-	int hauteur=getHauteur();
-	setImg(racineCheminImage+numeroImageCourante+"."+extensionImage);
-	setLargeur(largeur);
-	setHauteur(hauteur);
+        /*TODO - Vérifier que le numéro appartient bien à l'ensemble d'images*/
+        numeroImageCourante=new String(str);
+        int largeur=(int)getLargeur();
+        int hauteur=(int)getHauteur();
+        setImg(racineCheminImage+numeroImageCourante+"."+extensionImage);
+        setLargeur(largeur);
+        setHauteur(hauteur);
     }
 
 
@@ -306,16 +306,16 @@ public class Animation extends Texture {
      * @param g Graphics.
      */
     public void afficher ( Graphics g ) {
-	if(lecture){
-	    imageSuivante();
-	    int largeur=getLargeur();
-	    int hauteur=getHauteur();
-	    setImg(racineCheminImage+numeroImageCourante+"."+extensionImage);
-	    setLargeur(largeur);
-	    setHauteur(hauteur);
-	}
+        if(lecture){
+            imageSuivante();
+            int largeur=(int)getLargeur();
+            int hauteur=(int)getHauteur();
+            setImg(racineCheminImage+numeroImageCourante+"."+extensionImage);
+            setLargeur(largeur);
+            setHauteur(hauteur);
+        }
 
-	super.afficher(g);
+        super.afficher(g);
     }
 
     /**
@@ -323,16 +323,16 @@ public class Animation extends Texture {
      * @return Vrai si l'objet passé en paramètre est une animation dont les caractéristiques sont les mêmes que l'animation sur laquelle la méthode est appelée.
      */
     public boolean equals(Object obj){
-	if (obj==this) {
-            return true;
-        }
+        if (obj==this) {
+                return true;
+            }
 
-        // Vérification du type du paramètre
-        if (obj instanceof Animation) {
-            // Vérification des valeurs des attributs
-	    Animation other = (Animation) obj;
-	    return super.equals(other) && racineCheminImage.equals(other.racineCheminImage) && numeroPremiereImage.equals(other.numeroPremiereImage) && numeroDerniereImage.equals(other.numeroDerniereImage) && extensionImage.equals(other.extensionImage);
-	}
-	return false;
+            // Vérification du type du paramètre
+            if (obj instanceof Animation) {
+                // Vérification des valeurs des attributs
+            Animation other = (Animation) obj;
+            return super.equals(other) && racineCheminImage.equals(other.racineCheminImage) && numeroPremiereImage.equals(other.numeroPremiereImage) && numeroDerniereImage.equals(other.numeroDerniereImage) && extensionImage.equals(other.extensionImage);
+        }
+        return false;
     }
 }

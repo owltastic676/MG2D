@@ -53,7 +53,7 @@ public abstract class Dessin {
      * Création d'un dessin noir.
      */
     public Dessin(){
-	couleur = Couleur.NOIR;
+	    couleur = Couleur.NOIR;
     }
 
     /**
@@ -62,8 +62,7 @@ public abstract class Dessin {
      * @see Couleur
      */
     public Dessin ( Couleur couleur ) {
-
-	this.couleur = new Couleur(couleur);
+	    this.couleur = new Couleur(couleur);
     }
 
     // Accesseurs //
@@ -76,8 +75,7 @@ public abstract class Dessin {
      * @see Couleur
      */
     public Couleur getCouleur () {
-
-	return new Couleur(couleur);
+	    return new Couleur(couleur);
     }
 
     /**
@@ -96,8 +94,7 @@ public abstract class Dessin {
      * @see Couleur
      */
     public void setCouleur ( Couleur couleur ) {
-
-	this.couleur = new Couleur(couleur);
+	    this.couleur = new Couleur(couleur);
     }
 
     // Méthodes //
@@ -108,7 +105,7 @@ public abstract class Dessin {
      * @param dx pas de translation en X
      * @param dy pas de translation en Y
      */
-    public abstract void translater ( int dx, int dy );
+    public abstract void translater ( double dx, double dy );
 
     /**
      * Méthode abstraite destinée à afficher une forme géométrique.<br />
@@ -124,8 +121,7 @@ public abstract class Dessin {
      * @return Vrai si la méthode détecte une intersection, faux sinon.
      */
     public boolean intersection ( Dessin d ) {
-
-	return this.getBoiteEnglobante().intersection( d.getBoiteEnglobante() );
+	    return this.getBoiteEnglobante().intersection( d.getBoiteEnglobante() );
     }
 
     /**
@@ -136,8 +132,7 @@ public abstract class Dessin {
      * @return Vrai si la méthode détecte une intersection, faux sinon.
      */
     public final boolean intersectionRapide ( Dessin d ) {
-
-	return this.getBoiteEnglobante().intersection( d.getBoiteEnglobante() );
+	    return this.getBoiteEnglobante().intersection( d.getBoiteEnglobante() );
     }
 
     /**
@@ -152,17 +147,17 @@ public abstract class Dessin {
      * @return Vrai si l'objet passé en paramètre est un dessin et que leurs caractéristiques sont les mêmes, faux sinon.
      */
     public boolean equals(Object obj){
-	if (obj==this) {
-            return true;
-        }
+        if (obj==this) {
+                return true;
+            }
 
-    // Vérification du type du paramètre
-    if (obj instanceof Dessin) {
-        // Vérification des valeurs des attributs
-	    Dessin other = (Dessin) obj;
-	    return couleur.equals(other.couleur);
-	}
-	
-    return false;
+        // Vérification du type du paramètre
+        if (obj instanceof Dessin) {
+            // Vérification des valeurs des attributs
+            Dessin other = (Dessin) obj;
+            return couleur.equals(other.couleur);
+        }
+        
+        return false;
     }
 }

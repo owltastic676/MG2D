@@ -28,19 +28,21 @@ package MG2D.geometrie;
 
 import MG2D.Couleur;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Line2D;
 
 /**
  * Cette classe permet la création de points.<br />
  * Un Point est défini par deux entiers (abscisse et ordonnée).
- * @author Equipe 2D, Rémi Synave
- * @version 2.9
+ * @author Equipe 2D, Rémi Synave, Léothen Dusannier
+ * @version 2.10
  */
 public class Point extends Dessin {
 
     // Attributs //
 
-    private int x;	// Abscisse //
-    private int y;	// Ordonnée //
+    private double x;	// Abscisse //
+    private double y;	// Ordonnée //
 
     // Constructeurs //
 
@@ -48,9 +50,9 @@ public class Point extends Dessin {
      * Construit un point noir en (0,0).
      */
     public Point(){
-	super();
-	x=0;
-	y=0;
+        super();
+        x=0;
+        y=0;
     }
 
     /**
@@ -59,10 +61,10 @@ public class Point extends Dessin {
      */
     public Point ( Point p ) {
 
-	super ( p.getCouleur() );
+        super ( p.getCouleur() );
 
-	x = p.getX();
-	y = p.getY();
+        x = p.getX();
+        y = p.getY();
     }
 
     // Sans couleur //
@@ -73,9 +75,9 @@ public class Point extends Dessin {
      * @param x Abscisse.
      * @param y Ordonnée.
      */
-    public Point ( int x, int y ) {
+    public Point ( double x, double y ) {
 
-	super ( Couleur.NOIR );
+	    super ( Couleur.NOIR );
 
         this.x = x;
         this.y = y;
@@ -90,9 +92,9 @@ public class Point extends Dessin {
      * @param y Ordonnée.
      * @see Couleur
      */
-    public Point ( Couleur couleur, int x, int y ) {
+    public Point ( Couleur couleur, double x, double y ) {
 
-	super ( couleur );
+	    super ( couleur );
 
         this.x = x;
         this.y = y;
@@ -106,18 +108,16 @@ public class Point extends Dessin {
      * Retourne la valeur de x.
      * @return Abscisse du point.
      */
-    public int getX () {
-
-	return x;
+    public double getX () {
+	    return x;
     }
 
     /**
      * Retourne la valeur de y.
      * @return Ordonnée du point.
      */
-    public int getY () {
-
-	return y;
+    public double getY () {
+	    return y;
     }
 
     /**
@@ -126,9 +126,7 @@ public class Point extends Dessin {
      * @return BoiteEnglobante BoiteEnglobante qui est le Point lui-même.
      */
     public BoiteEnglobante getBoiteEnglobante () {
-
-	return new BoiteEnglobante ( new Point ( x, y ),
-				     new Point ( x, y ) );
+	    return new BoiteEnglobante ( new Point ( x, y ), new Point ( x, y ) );
     }
 
     /**
@@ -136,9 +134,9 @@ public class Point extends Dessin {
      * @param dx pas de translation suivant X
      * @param dy pas de translation suivant Y
      */
-    public void translater ( int dx, int dy ){
-	this.x=this.x+dx;
-	this.y=this.y+dy;
+    public void translater ( double dx, double dy ){
+        this.x=this.x+dx;
+        this.y=this.y+dy;
     }
 
     // Setter //
@@ -147,18 +145,16 @@ public class Point extends Dessin {
      * Permet d'attribuer une nouvelle valeur à x.
      * @param x Nouvelle abscisse.
      */
-    public void setX ( int x ) {
-
-	this.x = x;
+    public void setX ( double x ) {
+	    this.x = x;
     }
 
     /**
      * Permet d'attribuer une nouvelle valeur à y.
      * @param y Nouvelle ordonnée.
      */
-    public void setY ( int y ) {
-
-	this.y = y;
+    public void setY ( double y ) {
+	    this.y = y;
     }
 
     // Méthodes //
@@ -169,7 +165,7 @@ public class Point extends Dessin {
      * @return la longueur entre les deux points
      */
     public double longueur(Point p){
-	return Math.sqrt((getX()-p.getX())*(getX()-p.getX())+(getY()-p.getY())*(getY()-p.getY()));
+	    return Math.sqrt((getX()-p.getX())*(getX()-p.getX())+(getY()-p.getY())*(getY()-p.getY()));
     }
 
     /**
@@ -180,10 +176,16 @@ public class Point extends Dessin {
      * @param g Graphics.
      */
     public void afficher ( Graphics g ) {
+        Line2D line2d = new Line2D.Double(
+            x, g.getClipBounds().getHeight()-y,
+            x, g.getClipBounds().getHeight()-y
+        );
 
-	g.setColor ( getCouleur() );
+        Graphics2D graphics2D = (Graphics2D) g;
 
-	g.drawLine ( x, (int)g.getClipBounds().getHeight()-y, x, (int)g.getClipBounds().getHeight()-y );
+        graphics2D.setColor ( getCouleur() );
+
+        graphics2D.draw(line2d);
     }
 
     // Intersections //
@@ -198,7 +200,7 @@ public class Point extends Dessin {
      */
     public boolean intersection ( Point p ) {
 
-	return (x == p.getX() && y == p.getY() );
+	    return (x == p.getX() && y == p.getY() );
 
     }
 
@@ -222,15 +224,15 @@ public class Point extends Dessin {
      */
     public boolean intersection ( Cercle c ) {
 
-	boolean collision = false;
+        boolean collision = false;
 
-	int dx = x - c.getO().getX();
-	int dy = y - c.getO().getY();
+        double dx = x - c.getO().getX();
+        double dy = y - c.getO().getY();
 
-	if ( ( dx * dx ) + ( dy * dy ) < ( c.getRayon() * c.getRayon() ) )
-	    collision = true;
+        if ( ( dx * dx ) + ( dy * dy ) < ( c.getRayon() * c.getRayon() ) )
+            collision = true;
 
-	return collision;
+        return collision;
     }
 
     // Point - Triangle //
@@ -244,7 +246,7 @@ public class Point extends Dessin {
      * @return Une chaîne de caractères décrivant le point.
      */
     public String toString(){
-	return new String("("+x+","+y+")");
+	    return new String("("+x+","+y+")");
     }
 
     /**
@@ -252,16 +254,16 @@ public class Point extends Dessin {
      * @return Vrai si l'objet passé en paramètre est un point dont les caractéristiques sont les mêmes que le point sur lequel la méthode est appelée.
      */
     public boolean equals(Object obj){
-	if (obj==this) {
-            return true;
-        }
+        if (obj==this) {
+                return true;
+            }
 
-        // Vérification du type du paramètre
-        if (obj instanceof Point) {
-            // Vérification des valeurs des attributs
-	    Point other = (Point) obj;
-	    return super.equals(other) && x==other.x && y==other.y;
-	}
-	return false;
+            // Vérification du type du paramètre
+            if (obj instanceof Point) {
+                // Vérification des valeurs des attributs
+            Point other = (Point) obj;
+            return super.equals(other) && x==other.x && y==other.y;
+        }
+        return false;
     }
 }
