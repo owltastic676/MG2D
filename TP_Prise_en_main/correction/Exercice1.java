@@ -7,19 +7,39 @@ class Exercice1 extends ApplicationMG2D{
 
 	private Fenetre fenetre ;
 
-	public Texture texture ; 
+	public Animation anim1 , anim2 ; 
 
 	public Exercice1(){
 		super();
 
 		fenetre = getFenetre();
 
-		texture = new Texture(
-			"anim/1.webp",
-			new Point(100,100)
-		);
+		anim1 = new Animation(
+            "./img/duck",  
+            1,          
+            4,          
+            "jpg",      
+			100,  
+            new Point(400, 300),
+			64,
+			64
+        );
 
-		fenetre.ajouter(texture);
+		anim2 = new Animation(
+            "./img/duck",  
+            1,          
+            4,          
+            "jpg",      
+			300,  
+            new Point(500, 300),
+			64,
+			64
+        );
+
+
+
+		fenetre.ajouter(anim1);
+		fenetre.ajouter(anim2);
 	}
 
     public void boucleDeJeu(){

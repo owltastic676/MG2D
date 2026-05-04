@@ -29,7 +29,7 @@ package MG2D.geometrie;
 import MG2D.Couleur;
 import java.util.ArrayList;
 
-import java.awt.Graphics2D;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import java.io.IOException;
@@ -109,8 +109,36 @@ public class Texture extends Rectangle {
 
         int largeur = img.getWidth ( null );
         int hauteur = img.getHeight ( null );
+
         setLargeur(largeur);
         setHauteur(hauteur);
+        
+        hitbox = new ArrayList<Dessin>();
+
+        super.setB ( new Point ( a.getX() + largeur, a.getY() + hauteur ) );
+    }
+
+    /**
+     * Construit une Texture à partir d'une image et d'un Point.<br />
+     * <br /><br />
+     * La taille de l'image correspondra à la taille réelle de l'image. Elle ne sera pas déformée.<br />
+     * Par défaut, la transparence est activée.
+     * @param img Chaîne de caractères représente le chemin d'accès vers l'image.
+     * @param a	Position du coin bas gauche de l'image dans la zone d'affichage.
+     * @see Point
+     */
+    public Texture ( BufferedImage img, Point a ) {
+
+        super ( a, 0, 0 , false);
+
+        this.img = img;
+
+        int largeur = this.img.getWidth ( null );
+        int hauteur = this.img.getHeight ( null );
+
+        setLargeur(largeur);
+        setHauteur(hauteur);
+
         hitbox = new ArrayList<Dessin>();
 
         super.setB ( new Point ( a.getX() + largeur, a.getY() + hauteur ) );
@@ -125,7 +153,7 @@ public class Texture extends Rectangle {
      * @param haut Lauteur souhaitée de l'image.
      * @see Point
      */
-    public Texture ( String chemin, Point a, int larg, int haut ) {
+    public Texture ( String chemin, Point a, double largeur, double hauteur ) {
 
         super ( a, 0, 0 , false);
 
@@ -140,11 +168,11 @@ public class Texture extends Rectangle {
             System.out.println ("[!] Erreur : L'image "+ chemin.substring(1,chemin.length()) + " est introuvable.\n" + e);
         }
 
-        setLargeur(larg);
-        setHauteur(haut);
+        setLargeur(largeur);
+        setHauteur(hauteur);
         hitbox = new ArrayList<Dessin>();
 
-        super.setB ( new Point ( a.getX() + larg, a.getY() + haut ) );
+        super.setB ( new Point ( a.getX() + largeur, a.getY() + hauteur ) );
     }
 
     // Avec couleur de fond //
@@ -196,7 +224,7 @@ public class Texture extends Rectangle {
      * @see Couleur
      * @see Point
      */
-    public Texture ( Couleur couleur, String chemin, Point a, int larg, int haut ) {
+    public Texture ( Couleur couleur, String chemin, Point a, double largeur, double hauteur ) {
 
         super ( couleur, a, 0, 0 , true);
 
@@ -211,11 +239,11 @@ public class Texture extends Rectangle {
             System.out.println ("[!] Erreur : L'image "+chemin.substring(1,chemin.length()) +" est introuvable.\n" + e);
         }
 
-        setLargeur(larg);
-        setHauteur(haut);
+        setLargeur(largeur);
+        setHauteur(hauteur);
         hitbox = new ArrayList<Dessin>();
 
-        setB ( new Point ( a.getX() + larg, a.getY() + haut ) );
+        setB ( new Point ( a.getX() + largeur, a.getY() + hauteur ) );
     }
 
     // Accesseurs //
@@ -259,8 +287,19 @@ public class Texture extends Rectangle {
     public void setImg ( BufferedImage img ) {
 
         this.img = img;
+
         int largeur = img.getWidth ( null );
         int hauteur = img.getHeight ( null );
+
+        setLargeur(largeur);
+        setHauteur(hauteur);
+
+        setB ( new Point ( getA().getX() + largeur, getA().getY() + hauteur ) );
+    }
+
+    public void setImg ( BufferedImage img, double largeur, double hauteur) {
+        this.img = img;
+
         setLargeur(largeur);
         setHauteur(hauteur);
 
@@ -287,6 +326,7 @@ public class Texture extends Rectangle {
 
         int largeur = img.getWidth ( null );
         int hauteur = img.getHeight ( null );
+
         setLargeur(largeur);
         setHauteur(hauteur);
 
@@ -367,7 +407,7 @@ public class Texture extends Rectangle {
      * On vérifie d'abord si l'image est transparente ou non, puis on utilise la méthode drawImage adéquate.
      * @param g Graphics.
      */
-    public void afficher ( Graphics2D g ) {
+    public void afficher ( Graphics g ) {
 
         if ( getTransparent() )
             g.drawImage ( 
