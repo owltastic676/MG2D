@@ -1,7 +1,5 @@
 package MG2D;
 
-import MG2D.geometrie.Dessin;
-
 /**
  * Cette classe permet a la création d'une application MG2D avec un taux de rafraichissement précis. 
  * <br /><br />
@@ -15,10 +13,14 @@ public abstract class ApplicationMG2D{
 
     // Attribut //
 
+    public int numCollisionLayer = 12;
+
     // Temps d'attente entre le rafraichissement
     // de deux images consécutives. FPS = (1/delay)*1000
     private int delay;
     private Fenetre fenetre;
+
+    private boolean jeuEnCours = true;
 
     // Constructeur //
 
@@ -26,6 +28,7 @@ public abstract class ApplicationMG2D{
      * Crée un application vide.
      */
     public ApplicationMG2D(){
+
         fenetre = new Fenetre();
         this.delay = 40;
         // une image toutes les 40 ms
@@ -105,7 +108,9 @@ public abstract class ApplicationMG2D{
      * @see ApplicationMG2D#boucleDeJeu
      */
     public void lancerApplication(){
-        while(true){
+        initialisation();
+
+        while(jeuEnCours){
             try{
             Thread.sleep(this.delay);
             }catch(Exception e){}
@@ -113,10 +118,30 @@ public abstract class ApplicationMG2D{
             boucleDeJeu();
             fenetre.rafraichir();
         }
+
+        finDeBoucle();        
     }
     
     /**
      * Ici devra se trouver tout les éléments du code qui doivent etre constament mis a jour pour le bon fonctionnement du jeu.     
      */
     public abstract void boucleDeJeu();
+
+    /**
+     * Ici devra se trouver les éléments qui devront etre initialiser au début de la boucle
+     */
+    public abstract void initialisation();
+
+    /**
+     * Ici devra se trouver les éléments qui devront avoir lieux une fois que la boucle de jeu se termine
+     */
+    public abstract void finDeBoucle();
+
+    /**
+     * Permet de mettre fin au jeu 
+     */
+    public void termineJeu(){
+        jeuEnCours = false;
+    }
+
 }

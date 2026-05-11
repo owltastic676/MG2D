@@ -56,7 +56,7 @@ public class Texture extends Rectangle {
     // Attributs //
 
     private BufferedImage img;
-    private ArrayList<Dessin> hitbox;
+    private Dessin hitbox;
 
     // Constructeurs //
 
@@ -66,7 +66,7 @@ public class Texture extends Rectangle {
      * @see <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html" target="_blank">RuntimeException</a>
      */
     public Texture(){
-	throw new java.lang.RuntimeException("Le constructeur par défaut de Texture ne peut être appelé. Il faut au moins spécifier une image.");
+	    throw new java.lang.RuntimeException("Le constructeur par défaut de Texture ne peut être appelé. Il faut au moins spécifier une image.");
     }
 
     /**
@@ -77,7 +77,7 @@ public class Texture extends Rectangle {
         super(t);
         img = t.getImg().getSubimage(0,0,(int) t.getLargeur(),(int) t.getHauteur());
         // TODO - chercher comment copier une hitbox
-        hitbox = new ArrayList<Dessin>(t.hitbox);
+        hitbox = new Rectangle(getA(), getLargeur(), getHauteur());
     }
 
     // Sans couleur de fond //
@@ -112,10 +112,10 @@ public class Texture extends Rectangle {
 
         setLargeur(largeur);
         setHauteur(hauteur);
-        
-        hitbox = new ArrayList<Dessin>();
 
         super.setB ( new Point ( a.getX() + largeur, a.getY() + hauteur ) );
+
+        hitbox = new Rectangle(getA(), getLargeur(), getHauteur());
     }
 
     /**
@@ -139,9 +139,9 @@ public class Texture extends Rectangle {
         setLargeur(largeur);
         setHauteur(hauteur);
 
-        hitbox = new ArrayList<Dessin>();
-
         super.setB ( new Point ( a.getX() + largeur, a.getY() + hauteur ) );
+
+        hitbox = new Rectangle(getA(), getLargeur(), getHauteur());
     }
 
     /**
@@ -170,9 +170,11 @@ public class Texture extends Rectangle {
 
         setLargeur(largeur);
         setHauteur(hauteur);
-        hitbox = new ArrayList<Dessin>();
+
 
         super.setB ( new Point ( a.getX() + largeur, a.getY() + hauteur ) );
+
+        hitbox = new Rectangle(getA(), getLargeur(), getHauteur());
     }
 
     // Avec couleur de fond //
@@ -208,9 +210,11 @@ public class Texture extends Rectangle {
 
         setLargeur(largeur);
         setHauteur(hauteur);
-        hitbox = new ArrayList<Dessin>();
+
 
         setB ( new Point ( a.getX() + largeur, a.getY() + hauteur ) );
+
+        hitbox = new Rectangle(getA(), getLargeur(), getHauteur());
     }
 
     /**
@@ -241,9 +245,11 @@ public class Texture extends Rectangle {
 
         setLargeur(largeur);
         setHauteur(hauteur);
-        hitbox = new ArrayList<Dessin>();
+
 
         setB ( new Point ( a.getX() + largeur, a.getY() + hauteur ) );
+
+        hitbox = new Rectangle(getA(), getLargeur(), getHauteur());
     }
 
     // Accesseurs //
@@ -273,7 +279,7 @@ public class Texture extends Rectangle {
      * Retourne la hitbox - ensemble de primitives géométriques formant la hitbox de la texture.
      * @return Une liste contenant l'ensemble des primitives gégométriques formanant la hitbox.
      */
-    public ArrayList<Dessin> getHitbox(){
+    public Dessin getHitbox(){
 	    return hitbox;
     }
 
@@ -374,30 +380,31 @@ public class Texture extends Rectangle {
     // Méthode //
 
     /**
-     * Ajoute une primitive géométrique à la hitbox.
-     * @param d une primitive géométrique, un objet de type Dessin.
+     * Ajoute une forme géométrique à la hitbox.
+     * @param d une forme géométrique, un objet de type Dessin.
      */
-    public void ajouterALaHitbox(Dessin d){
-        d.translater(getA().getX(),getA().getY());
-        hitbox.add(d);
+    public void changeFormeHitbox(Dessin d){
+        hitbox = d; 
+        hitbox.translater(getA().getX(), getA().getY());
     }
 
     /**
      * Supprime l'ensemble des objets contenus dans la hitbox.
      */
+    /*
     public void supprimeHitbox(){
-	    hitbox.clear();
+	    hitbox ;
     }
+    */
 
     /**
      * Translate une texture et la hitbox qui va avec.
      * @param dx translation en x
      * @param dy translation en y
      */
-    public void translater(int dx, int dy){
+    public void translater(double dx, double dy){
         super.translater(dx,dy);
-        for(Dessin d:hitbox)
-            d.translater(dx,dy);
+        hitbox.translater(dx,dy);
     }
 
     /**
@@ -432,17 +439,17 @@ public class Texture extends Rectangle {
      * @return Vrai si l'objet passé en paramètre est une texture dont les caractéristiques sont les mêmes que la texture sur lequel la méthode est appelée.
      */
     public boolean equals(Object obj){
-	if (obj==this) {
-            return true;
-        }
+        if (obj==this) {
+                return true;
+            }
 
-        // Vérification du type du paramètre
-        if (obj instanceof Texture) {
-            // Vérification des valeurs des attributs
-	    Texture other = (Texture) obj;
-	    return super.equals(other) && img.equals(other.img);
-	}
-	return false;
+            // Vérification du type du paramètre
+            if (obj instanceof Texture) {
+                // Vérification des valeurs des attributs
+            Texture other = (Texture) obj;
+            return super.equals(other) && img.equals(other.img);
+        }
+        return false;
     }
 
     /**
@@ -451,13 +458,7 @@ public class Texture extends Rectangle {
      * @return vrai s'il y a intersection entre la primitive géométrique passé en paramètre et la hitbox de la texture, faux sinon.
      */
     public boolean intersection(Dessin d){
-	if(hitbox.size()==0)
-	    return super.intersection(d);
-	
-	for(Dessin dh:hitbox)
-	    if(dh.intersection(d))
-		return true;
-	return false;
+        return hitbox.intersection(d);
     }
 
     /**
@@ -465,29 +466,31 @@ public class Texture extends Rectangle {
      * @param t une texture
      * @return vrai s'il y a intersection entre la hitbox des deux textures, faux sinon.
      */
+    /*
     public boolean intersection(Texture t){
-	if(hitbox.size()==0 && t.hitbox.size()==0)
-	    return super.intersection(t);
+        if(hitbox.size()==0 && t.hitbox.size()==0)
+            return super.intersection(t);
 
-	if(hitbox.size()==0 && t.hitbox.size()>0){
-	    for(Dessin dh: t.hitbox)
-		if(dh.intersection(this))
-		    return true;
-	}
+        if(hitbox.size()==0 && t.hitbox.size()>0){
+            for(Dessin dh: t.hitbox)
+            if(dh.intersection(this))
+                return true;
+        }
 
-	if(hitbox.size()>0 && t.hitbox.size()==0){
-	    for(Dessin dh:hitbox)
-		if(dh.intersection(t))
-		    return true;
-	}
-	
-	if(hitbox.size()>0 && t.hitbox.size()>0){
-	    for(Dessin dh:hitbox)
-		for(Dessin dh2:t.hitbox)
-		    if(dh.intersection(dh2))
-			return true;
+        if(hitbox.size()>0 && t.hitbox.size()==0){
+            for(Dessin dh:hitbox)
+            if(dh.intersection(t))
+                return true;
+        }
+        
+        if(hitbox.size()>0 && t.hitbox.size()>0){
+            for(Dessin dh:hitbox)
+            for(Dessin dh2:t.hitbox)
+                if(dh.intersection(dh2))
+                return true;
 	}
 	
 	return false;
     }
+    */
 }

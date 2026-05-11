@@ -27,6 +27,8 @@
 package MG2D.geometrie;
 
 import MG2D.Couleur;
+
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
@@ -259,7 +261,9 @@ public class Carre extends Rectangle {
      * On récupère d'abord la couleur de l'objet afin de le dessiner dans la bonne couleur. Ensuite, on vérifie si l'objet est arrondis et plein, arrondis ou plein pour appeler les méthodes adéquates. Sinon on utilise l'affichage de base avec drawRect().
      * @param g Graphics.
      */
-    public void afficher ( Graphics2D g ) {
+    public void afficher ( Graphics graphics ) {
+        Graphics2D g = (Graphics2D) graphics;
+
         g.setColor ( this.getCouleur() );
 
         double x = this.getA().getX();
