@@ -7,7 +7,7 @@ package MG2D;
  * L'utilisateur aura a créer son aplication en héritant de celle-ci et d'ajouter son code dans 'boucle de jeu'
  * L'utilisateur peut définir le taux de rafraichissement de l'application (par défaut 40).<br />
  * @author Equipe 2D, Rémi Synave, Léothen Dusannier
- * @version 1.0
+ * @version 1.1
  */
 public abstract class ApplicationMG2D{
 
