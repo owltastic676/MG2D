@@ -7,8 +7,8 @@ class Exercice1 extends ApplicationMG2D{
 
 	private Fenetre fenetre ;
 	private Clavier clavier = getClavier();
-
-	public Texture texture1, texture2 ;
+	
+	public Animation animation1, animation2 ;
 
 	int vitesse = 5; 
 
@@ -16,22 +16,26 @@ class Exercice1 extends ApplicationMG2D{
 		super();
 	}
 
-	public void finDeBoucle(){
-
-	}
-
 	public void initialisation() {
 		fenetre = getFenetre();
 
-		texture1 = new Texture(
-			"./img/duck1.jpg",
-			new Point(250,250),
+		animation1 = new Animation(
+			"./img/moving/duck",
+			1,
+			6,
+			"png",
+			100,
+			new Point(350,350),
 			100,
 			100
 		);
 
-		texture2 = new Texture(
-			"./img/duck2.jpg",
+		animation2 = new Animation(
+			"./img/idle/duck",
+			1,
+			3,
+			"png",
+			100,
 			new Point(64,64),
 			100,
 			100
@@ -39,21 +43,23 @@ class Exercice1 extends ApplicationMG2D{
 
 		Cercle nouvelleCollision = new Cercle(new Point(50,50), 16);
 
-		texture2.changeFormeHitbox(nouvelleCollision);
-
 		fenetre.ajouter(nouvelleCollision);
 
-		fenetre.ajouter(texture1);
-		fenetre.ajouter(texture2);
+		fenetre.ajouter(animation2);
+
+		animation1.changeFormeHitbox(nouvelleCollision);
+
+		fenetre.ajouter(animation1);
+		fenetre.ajouter(animation1.getHitbox());
 	}
 
     public void boucleDeJeu(){
-		if (clavier.getZEnfoncee()){ texture1.translater(0, vitesse); }
-		if (clavier.getSEnfoncee()){ texture1.translater(0, -vitesse); }
-		if (clavier.getQEnfoncee()){ texture1.translater(-vitesse, 0); }
-		if (clavier.getDEnfoncee()){ texture1.translater(vitesse, 0); }
+		if (clavier.getZEnfoncee()){ animation1.translater(0, vitesse); }
+		if (clavier.getSEnfoncee()){ animation1.translater(0, -vitesse); }
+		if (clavier.getQEnfoncee()){ animation1.translater(-vitesse, 0); }
+		if (clavier.getDEnfoncee()){ animation1.translater(vitesse, 0); }
 
-		if (texture1.intersection(texture2)){
+		if (animation1.intersection(animation2)){
 			System.out.println("Collision !");
 		} 
     }
