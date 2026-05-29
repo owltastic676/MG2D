@@ -6,10 +6,11 @@ import MG2D.geometrie.*;
 class Exercice1 extends ApplicationMG2D{
 
 	private Fenetre fenetre ;
-
-	public Animation anim1 , anim2 ; 
+	private Clavier clavier = getClavier();
 
 	public Texture texture1, texture2 ;
+
+	int vitesse = 5; 
 
 	public Exercice1(){
 		super();
@@ -22,62 +23,39 @@ class Exercice1 extends ApplicationMG2D{
 	public void initialisation() {
 		fenetre = getFenetre();
 
-		anim1 = new Animation(
-            "./img/duck",  
-            1,          
-            4,          
-            "jpg",      
-			100,  
-            new Point(400, 300),
-			64,
-			64
-        );
-
-		anim2 = new Animation(
-            "./img/duck",  
-            1,          
-            4,          
-            "jpg",      
-			300,  
-            new Point(500, 300),
-			64,
-			64
-        );
-
 		texture1 = new Texture(
 			"./img/duck1.jpg",
-			new Point(0,0)
+			new Point(250,250),
+			100,
+			100
 		);
 
 		texture2 = new Texture(
 			"./img/duck2.jpg",
-			new Point(64,64)
+			new Point(64,64),
+			100,
+			100
 		);
 
-		Cercle nouvelleCollision = new Cercle(new Point(100,100), 25);
+		Cercle nouvelleCollision = new Cercle(new Point(50,50), 16);
 
-		Cercle nouvelleCollision2 = new Cercle(new Point(8,8), 50);
-
-		CollisionGroupe collisionGroupe = new CollisionGroupe();
-		collisionGroupe.insertion(nouvelleCollision);
-		collisionGroupe.insertion(nouvelleCollision2);
-
-		texture1.changeFormeHitbox(nouvelleCollision);
-		texture2.changeFormeHitbox(collisionGroupe);
+		texture2.changeFormeHitbox(nouvelleCollision);
 
 		fenetre.ajouter(nouvelleCollision);
 
-		fenetre.ajouter(collisionGroupe);
-
 		fenetre.ajouter(texture1);
 		fenetre.ajouter(texture2);
-
-		fenetre.ajouter(anim1);
-		fenetre.ajouter(anim2);
 	}
 
     public void boucleDeJeu(){
-		
+		if (clavier.getZEnfoncee()){ texture1.translater(0, vitesse); }
+		if (clavier.getSEnfoncee()){ texture1.translater(0, -vitesse); }
+		if (clavier.getQEnfoncee()){ texture1.translater(-vitesse, 0); }
+		if (clavier.getDEnfoncee()){ texture1.translater(vitesse, 0); }
+
+		if (texture1.intersection(texture2)){
+			System.out.println("Collision !");
+		} 
     }
 
 	public static void main(String[] args) {

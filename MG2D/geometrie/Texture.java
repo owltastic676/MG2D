@@ -77,7 +77,7 @@ public class Texture extends Rectangle {
         super(t);
         img = t.getImg().getSubimage(0,0,(int) t.getLargeur(),(int) t.getHauteur());
         // TODO - chercher comment copier une hitbox
-        hitbox = new Rectangle(getA(), getLargeur(), getHauteur());
+        hitbox = t.getHitbox();
     }
 
     // Sans couleur de fond //
@@ -458,6 +458,11 @@ public class Texture extends Rectangle {
      * @return vrai s'il y a intersection entre la primitive géométrique passé en paramètre et la hitbox de la texture, faux sinon.
      */
     public boolean intersection(Dessin d){
+
+        if(d instanceof Texture){
+            return hitbox.intersection(((Texture)d).getHitbox());
+        }
+
         return hitbox.intersection(d);
     }
 

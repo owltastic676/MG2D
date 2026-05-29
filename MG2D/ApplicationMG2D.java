@@ -130,12 +130,16 @@ public abstract class ApplicationMG2D{
     /**
      * Ici devra se trouver les éléments qui devront etre initialiser au début de la boucle
      */
-    public abstract void initialisation();
+    public void initialisation(){
+        // Implémentation par défaut 
+    }
 
     /**
      * Ici devra se trouver les éléments qui devront avoir lieux une fois que la boucle de jeu se termine
      */
-    public abstract void finDeBoucle();
+    public void finDeBoucle(){
+        // Implémentation par défaut 
+    }
 
     /**
      * Permet de mettre fin au jeu 
