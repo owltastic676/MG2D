@@ -466,6 +466,19 @@ public class Texture extends Rectangle {
         return hitbox.intersection(d);
     }
 
+    public boolean intersection(Cercle d){
+        return hitbox.intersection(d);
+    }
+
+    public boolean intersection(Triangle d){
+        return hitbox.intersection(d);
+    }
+
+    public boolean intersection(Ligne d){
+        return hitbox.intersection(d);
+    }
+
+
     /**
      * Teste l'intersection entre les hitbox de deux textures (si elles existent).
      * @param t une texture
