@@ -374,10 +374,6 @@ public class Cercle extends Ovale {
         return collision;
     }
 
-    public boolean intersection ( Texture tex){
-        return tex.intersection(this);
-    }
-
     // Cercle - Triangle //
 
     // TODO : travail à faire, si l'envie vous prend :) //

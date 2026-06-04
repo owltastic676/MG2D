@@ -124,6 +124,14 @@ public abstract class Dessin {
 	    return this.getBoiteEnglobante().intersection( d.getBoiteEnglobante() );
     }
 
+    public boolean intersection ( CollisionGroupe cg ) {
+        return cg.intersection(this);
+    }
+
+    public boolean intersection ( Texture tex) {
+        return tex.getHitbox().intersection(this);
+    }
+
     /**
      * Méthode de permettant d'effectuer un test d'intersection rapide, basé sur les boites englobantes.<br />
      * En appelant cette méthode, l'utilisateur n'appelle pas les méthodes d'intersection précises des sous-classes mais celle faisant appel aux boites englobantes.<br />

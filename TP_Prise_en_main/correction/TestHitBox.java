@@ -41,7 +41,7 @@ class TestHitBox extends ApplicationMG2D{
 	if(ennemi.getO().getY()-ennemi.getRayon() == 0) dy = 1;
 	if(ennemi.getO().getY()+ennemi.getRayon() == 600) dy = -1;
 
-	if(ennemi.intersection(vaisseau)) temoin.setCouleur(Couleur.VERT);
+	if(vaisseau.intersection(ennemi)) temoin.setCouleur(Couleur.VERT);
 	else temoin.setCouleur(Couleur.ROUGE);
     }
 

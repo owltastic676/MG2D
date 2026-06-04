@@ -296,10 +296,6 @@ public class Ligne extends Dessin {
 	return collision;
     }
 
-    public boolean intersection ( Texture tex){
-        return tex.intersection(this);
-    }
-
     // Ligne - Ovale //
 
     // TODO : travail à faire, si l'envie vous prend :) //

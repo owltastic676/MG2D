@@ -47,6 +47,9 @@ class Exercice1 extends ApplicationMG2D{
 
 		fenetre.ajouter(animation2);
 
+		fenetre.ajouter(animation2.getHitbox());
+		fenetre.ajouter(animation1.getHitbox());
+
 		animation1.changeFormeHitbox(nouvelleCollision);
 
 		fenetre.ajouter(animation1);

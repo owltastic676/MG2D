@@ -845,10 +845,6 @@ public class Rectangle extends Dessin {
         return collision;
     }
 
-    public boolean intersection ( Texture tex){
-        return tex.intersection(this);
-    }
-
     /**
      * Méthode toString retournant un description du rectangle.<br />
      * La chaine de caractères retournée est de la forme "Rectangle de (x1,y1) en (x2,y2)".

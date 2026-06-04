@@ -235,10 +235,6 @@ public class Point extends Dessin {
         return collision;
     }
 
-    public boolean intersection ( Texture tex){
-        return tex.intersection(this);
-    }
-
     // Point - Triangle //
 
     // TODO : travail à faire, si l'envie vous prend :) //

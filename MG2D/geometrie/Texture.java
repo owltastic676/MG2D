@@ -384,18 +384,13 @@ public class Texture extends Rectangle {
      * @param d une forme géométrique, un objet de type Dessin.
      */
     public void changeFormeHitbox(Dessin d){
+        if(d instanceof Texture){
+            throw new java.lang.IllegalArgumentException("Une texture ne peut pas être utilisée comme hitbox d'une autre texture.");
+        }
+        
         hitbox = d; 
         hitbox.translater(getA().getX(), getA().getY());
     }
-
-    /**
-     * Supprime l'ensemble des objets contenus dans la hitbox.
-     */
-    /*
-    public void supprimeHitbox(){
-	    hitbox ;
-    }
-    */
 
     /**
      * Translate une texture et la hitbox qui va avec.
@@ -452,63 +447,16 @@ public class Texture extends Rectangle {
         return false;
     }
 
-    /**
-     * Teste l'intersection entre une primitive géométrique et la hitbox de la texture (si elle existe).
-     * @param d une primitive géométrique
-     * @return vrai s'il y a intersection entre la primitive géométrique passé en paramètre et la hitbox de la texture, faux sinon.
-     */
-    public boolean intersection(Dessin d){
 
-        if(d instanceof Texture){
-            return hitbox.intersection(((Texture)d).getHitbox());
-        }
-
+    public boolean intersection ( Dessin d ) {
         return hitbox.intersection(d);
     }
 
-    public boolean intersection(Cercle d){
-        return hitbox.intersection(d);
+    public boolean intersection ( Texture tex) {
+        return hitbox.intersection(tex.hitbox);
     }
 
-    public boolean intersection(Triangle d){
-        return hitbox.intersection(d);
-    }
-
-    public boolean intersection(Ligne d){
-        return hitbox.intersection(d);
-    }
-
-
-    /**
-     * Teste l'intersection entre les hitbox de deux textures (si elles existent).
-     * @param t une texture
-     * @return vrai s'il y a intersection entre la hitbox des deux textures, faux sinon.
-     */
-    /*
-    public boolean intersection(Texture t){
-        if(hitbox.size()==0 && t.hitbox.size()==0)
-            return super.intersection(t);
-
-        if(hitbox.size()==0 && t.hitbox.size()>0){
-            for(Dessin dh: t.hitbox)
-            if(dh.intersection(this))
-                return true;
-        }
-
-        if(hitbox.size()>0 && t.hitbox.size()==0){
-            for(Dessin dh:hitbox)
-            if(dh.intersection(t))
-                return true;
-        }
-        
-        if(hitbox.size()>0 && t.hitbox.size()>0){
-            for(Dessin dh:hitbox)
-            for(Dessin dh2:t.hitbox)
-                if(dh.intersection(dh2))
-                return true;
-	}
-	
-	return false;
-    }
-    */
+    public boolean intersection ( Triangle t ) { return intersection((Dessin) t); }
+    public boolean intersection ( Cercle c ) { return intersection((Dessin) c); }
+    public boolean intersection ( Ligne l ) { return intersection((Dessin) l); }
 }
