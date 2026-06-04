@@ -370,6 +370,10 @@ public class Triangle extends Dessin {
         return collision;
     }
 
+    public boolean intersection ( Texture tex){
+        return tex.intersection(this);
+    }
+
     // Triangle - Ovale //
 
     // TODO : travail à faire, si l'envie vous prend :) //
