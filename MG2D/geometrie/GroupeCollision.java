@@ -10,7 +10,7 @@ import java.awt.Graphics;
  * @author Léothen Dusannier
  * @version 1.0
  */
-public class CollisionGroupe extends Dessin {
+public class GroupeCollision extends Dessin {
 
     // attributs //
 
@@ -21,7 +21,7 @@ public class CollisionGroupe extends Dessin {
     /**
      * Crée un groupe de collision vide.
      */
-    public CollisionGroupe(){
+    public GroupeCollision(){
         managedDessins = new ArrayList<>();
     }
 

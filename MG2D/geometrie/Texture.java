@@ -447,16 +447,32 @@ public class Texture extends Rectangle {
         return false;
     }
 
-
+    /**
+     * Vérifie si la texture intersecte un autre dessin.
+     * @param d Le dessin à tester.
+     * @return true si les deux dessins s'intersectent, false sinon.
+     */
     public boolean intersection ( Dessin d ) {
         return hitbox.intersection(d);
     }
 
+    /**
+     * Vérifie si la texture intersecte une autre texture.
+     * @param tex La texture à tester.
+     * @return true si les deux textures s'intersectent, false sinon.
+     */
     public boolean intersection ( Texture tex) {
         return hitbox.intersection(tex.hitbox);
     }
 
+    // Méthodes d'intersection pour les différentes formes géométriques. Elles font toutes appel à la méthode intersection(Dessin d) qui utilise la hitbox de la texture.
+
+    @Override
     public boolean intersection ( Triangle t ) { return intersection((Dessin) t); }
+    
+    @Override
     public boolean intersection ( Cercle c ) { return intersection((Dessin) c); }
+    
+    @Override
     public boolean intersection ( Ligne l ) { return intersection((Dessin) l); }
 }

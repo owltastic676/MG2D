@@ -124,10 +124,20 @@ public abstract class Dessin {
 	    return this.getBoiteEnglobante().intersection( d.getBoiteEnglobante() );
     }
 
-    public boolean intersection ( CollisionGroupe cg ) {
+    /**
+     * Défini le comportement pour le test de si le dessin intersecte un groupe de collisions.
+     * @param cg Le groupe de collisions à tester.
+     * @return true si les deux s'intersectent, false sinon.
+     */
+    public boolean intersection ( GroupeCollision cg ) {
         return cg.intersection(this);
     }
 
+    /**
+     * Défini le comportement pour le test de si le dessin intersecte une texture.
+     * @param tex La texture à tester.
+     * @return true si les deux s'intersectent, false sinon.
+     */
     public boolean intersection ( Texture tex) {
         return tex.getHitbox().intersection(this);
     }
