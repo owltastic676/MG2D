@@ -431,13 +431,18 @@ public class Animation extends Texture {
         savedImgs = new BufferedImage[numeroDerniereImage - numeroPremiereImage + 1];
         String path; 
 
+        int nbDigits;
+        nbDigits = String.valueOf(numeroDerniereImage).length();
+
         for (int i = numeroPremiereImage ; i <= numeroDerniereImage; i++)
         {
-            path = new String(
-                "/"+
-                racineCheminImage+
-                i+
-                "."+
+            String numero = String.format("%0" + nbDigits + "d", i);
+
+            path = new String( 
+                "/" +
+                racineCheminImage +
+                numero +
+                "." +
                 extensionImage
             );
 

@@ -11,10 +11,6 @@ package MG2D;
  */
 public abstract class ApplicationMG2D{
 
-    // Attribut //
-
-    public int numCollisionLayer = 12;
-
     // Temps d'attente entre le rafraichissement
     // de deux images consécutives. FPS = (1/delay)*1000
     private int delay;
